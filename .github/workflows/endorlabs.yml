@@ -1,0 +1,49 @@
+name: Endor Labs Scan Test
+on:
+  workflow_dispatch:
+    inputs:
+      api:
+        description: "Enter the target Endor Labs API"
+        required: true
+        type: choice
+        default: https://api.endorlabs.com
+        options:
+        - https://api.staging.endorlabs.com
+        - https://api.endorlabs.com
+      tenant_name:
+        description: "Enter your Endor Labs namespace?"
+        required: true
+        type: string
+jobs:
+  scan-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+          
+        - name: Setup Java
+          uses: actions/setup-java@v4
+          with:
+            distribution: microsoft
+            java-version: "17"
+            cache: maven
+            cache-dependency-path: pom.xml
+
+        - name: Compile Package
+          run: mvn clean install
+            
+        - name: Endor Labs Workflow Dispatch
+          if: ${{ github.event_name == 'workflow_dispatch' }}
+          uses: endorlabs/github-action@main
+          with:
+            namespace: ${{ github.event.inputs.tenant_name }}
+            scan_summary_output_type: "table"
+            pr: "true"
+            enable_github_action_token: "true"
+            scan_dependencies: "true"
+            scan_secrets: "true"
+            scan_git_logs: "true"

@@ -1,0 +1,37 @@
+name: OSV Scanner SCA
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  osv-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: 'pom.xml'
+
+      - name: Compile & Package
+        run: mvn clean install
+
+      - name: Download OSV-Scanner
+        run: |
+          curl -LO https://github.com/google/osv-scanner/releases/download/v1.9.2/osv-scanner_linux_amd64
+          mv osv-scanner_linux_amd64 osv-scanner
+          chmod +x osv-scanner
+          ./osv-scanner scan --lockfile pom.xml
+        continue-on-error: true
