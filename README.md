@@ -1,6 +1,8 @@
 # Java Vulnerability Fix Guide
 
-A step-by-step guide to identify and fix vulnerabilities in Java dependencies.
+Your security team has identified a vulnerability https://github.com/advisories/GHSA-599f-7c49-w659 in this repository. They also have asked you to harden the packages by removing unused code, if there is any at all.
+
+Its your job to fix it. Ready, go!
 
 ## Quick Start
 
