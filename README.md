@@ -1,8 +1,11 @@
 # Java Vulnerability Fix Guide
 
-Your security team has identified a vulnerability https://github.com/advisories/GHSA-599f-7c49-w659 in this repository. They also have asked you to harden the packages by removing unused code, if there is any at all.
+This repository consists of two exersises to resolve Java vulnerabilities in Maven:
 
-Its your job to fix it. Ready, go!
+- Exersise 1: Direct Dependency Update
+- Exersise 2: Direct Dependency Removal
+
+Its your job to go fix the issues being raised to you by your security scanners.
 
 ## Quick Start
 
@@ -51,9 +54,27 @@ chmod +x ./osv-scanner
 
 ### 4. Fix Vulnerabilities
 
-Here are two common vulnerability fixes:
+**Exersise #1:**
 
-#### 4.1 Remove Unused Dependencies
+Your security team has identified a vulnerability https://github.com/advisories/GHSA-599f-7c49-w659 in this repository. Its your job to fix it. Okay, go!
+
+
+Example: Upgrading commons-text to a secure version:
+
+In the `pom.xml` update the version of commons-text to a non-vulnerable version of commons-text. Version 1.9 has a known vulnerability. 
+
+```xml
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-text</artifactId>
+    <version>1.9</version>
+</dependency>
+```
+
+Research which version you should upgrade to and perform the upgrade. Then rebuild and rescan the package.
+
+
+**Exersise #2: Removing unused dependencies**
 
 Example: Removing unused jackson-databind:
 
@@ -68,19 +89,7 @@ Example: Removing unused jackson-databind:
 </dependency>
 ```
 
-#### 4.2 Upgrade Vulnerable Dependencies
-
-Example: Upgrading commons-text to a secure version:
-
-In the `pom.xml` update the version of commons-text to a non-vulnerable version, such as 1.10.0.
-
-```xml
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-text</artifactId>
-    <version>1.10.0</version>
-</dependency>
-```
+Then verify your fixes!
 
 ### 5. Verify Fixes
 
