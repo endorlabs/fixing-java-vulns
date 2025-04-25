@@ -26,15 +26,7 @@ Compile and package your project:
 mvn clean install
 ```
 
-### 2. Analyze Dependencies
-
-You can see the dependencies for this project by running:
-
-```bash
-mvn dependency:tree
-```
-
-### 3. Scan for Vulnerabilities
+### 2. Scan for Vulnerabilities
 
 We'll use `endorctl` to scan the project for known vulnerabilities.
 
@@ -62,7 +54,7 @@ We'll use `endorctl` to scan the project for known vulnerabilities.
    ```
    This will analyze your project for security vulnerabilities.
 
-### 4. Fix Vulnerabilities
+### 3. Fix Vulnerabilities
 
 **Exersise #1:**
 
@@ -101,7 +93,7 @@ Example: Removing unused jackson-databind:
 
 Then verify your fixes!
 
-### 5. Verify Fixes
+### 4. Verify Fixes
 
 After making changes:
 
