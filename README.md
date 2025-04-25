@@ -28,7 +28,7 @@ mvn clean install
 
 ### 2. Analyze Dependencies
 
-Generate a dependency tree:
+You can see the dependencies for this project by running:
 
 ```bash
 mvn dependency:tree
@@ -36,21 +36,31 @@ mvn dependency:tree
 
 ### 3. Scan for Vulnerabilities
 
-1. Download [OSV-Scanner](https://github.com/google/osv-scanner/releases/latest) for your platform (macOS, Linux, Windows)
+We'll use `endorctl` to scan the project for known vulnerabilities.
 
-2. Make the scanner executable (Unix-based systems):
+#### Step-by-step:
 
-```bash
-curl -LO https://github.com/google/osv-scanner/releases/download/v1.9.2/osv-scanner_linux_amd64
-mv osv-scanner_linux_amd64 osv-scanner
-chmod +x ./osv-scanner
-```
+1. **Initialize Endor Labs**  
+   Run the following command to authenticate with Endor Labs and set up your environment:
+   ```bash
+   endorctl init --auth-mode <mode> --headless-mode
+   ```
+   Replace `<mode>` with your preferred authentication mode (e.g., `google`, `github`, etc.).
 
-1. Run the vulnerability scan:
+2. **Authenticate via Portal**  
+   The command will output a URL. You can command-click (⌘+click) the link in your terminal to open the authentication portal.  
+   Log in and copy the generated token.
 
-```bash
-./osv-scanner scan -L pom.xml 
-```
+3. **Complete Setup**  
+   Paste the token back into your terminal.  
+   You'll then be prompted to select a tenant—choose the one you just created.
+
+4. **Run the Vulnerability Scan**  
+   Once authenticated and configured, scan your codebase:
+   ```bash
+   endorctl scan
+   ```
+   This will analyze your project for security vulnerabilities.
 
 ### 4. Fix Vulnerabilities
 
@@ -101,13 +111,13 @@ After making changes:
 mvn clean install
 ```
 
-1. Check dependencies:
+2. Check dependencies:
 
 ```bash
 mvn dependency:tree
 ```
 
-1. Re-run vulnerability scan:
+3. Re-run vulnerability scan:
 
 ```bash
 ./osv-scanner scan -L pom.xml 
