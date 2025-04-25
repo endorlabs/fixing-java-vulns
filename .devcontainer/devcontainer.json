@@ -12,7 +12,7 @@
 			"installGradle": "false"
 		}
 	},
-	"postStartCommand": "curl https://api.endorlabs.com/download/endorlabs/v1.7.198/binaries/endorctl_v1.7.198_linux_amd64 -o endorctl && chmod +x ./endorctl && alias endorctl='$PWD/endorctl'"
+	"postStartCommand": "curl https://api.endorlabs.com/download/endorlabs/v1.7.198/binaries/endorctl_v1.7.198_linux_amd64 -o endorctl && chmod +x ./endorctl && sudo touch /etc/machine-id"
 
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
