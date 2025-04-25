@@ -35,7 +35,7 @@ We'll use `endorctl` to scan the project for known vulnerabilities.
 1. **Initialize Endor Labs**  
    Run the following command to authenticate with Endor Labs and set up your environment:
    ```bash
-   endorctl init --auth-mode <mode> --headless-mode
+   ./endorctl init --auth-mode <mode> --headless-mode
    ```
    Replace `<mode>` with your preferred authentication mode (e.g., `google`, `github`, etc.).
 
@@ -50,7 +50,7 @@ We'll use `endorctl` to scan the project for known vulnerabilities.
 4. **Run the Vulnerability Scan**  
    Once authenticated and configured, scan your codebase:
    ```bash
-   endorctl scan
+   ./endorctl scan
    ```
    This will analyze your project for security vulnerabilities.
 
@@ -112,5 +112,5 @@ mvn dependency:tree
 3. Re-run vulnerability scan:
 
 ```bash
-./osv-scanner scan -L pom.xml 
+./endorctl scan -L pom.xml 
 ```
