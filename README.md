@@ -112,5 +112,5 @@ mvn dependency:tree
 3. Re-run vulnerability scan:
 
 ```bash
-./endorctl scan -L pom.xml 
+./endorctl scan
 ```
