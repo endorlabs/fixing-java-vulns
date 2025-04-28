@@ -50,7 +50,7 @@ We'll use `endorctl` to scan the project for known vulnerabilities.
 4. **Run the Vulnerability Scan**  
    Once authenticated and configured, scan your codebase:
    ```bash
-   ./endorctl scan
+   ./endorctl scan --quick-scan
    ```
    This will analyze your project for security vulnerabilities.
 
@@ -112,5 +112,5 @@ mvn dependency:tree
 3. Re-run vulnerability scan:
 
 ```bash
-./endorctl scan
+./endorctl scan --quick-scan
 ```
